@@ -1,7 +1,7 @@
 
 ## Fin-Eval: Assignment 3
 
-Rob Alderman  
+Papa M sanogo  
 [Financial Evaluation and Investment Strategy](https://www.coursera.org/learn/investments/outline?module=7TIU9)  
 [Assignment 3](https://www.coursera.org/learn/investments/lecture/meglV/assignment-3-analyzing-identifying-three-mystery-securities)  
 Sept 2015
