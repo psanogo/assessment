@@ -1,0 +1,51 @@
+page 50001 "Dataverse Worker List"
+{
+    PageType = List;
+    SourceTable = "Dataverse Worker";
+    Editable = false;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+    ...
+
+    layout
+    {
+        // add fields to display on the page
+    }
+
+    actions
+    {
+        area(processing)
+        {
+            action(CreateFromDataverse)
+            {
+                ApplicationArea = All;
+                Caption = 'Create in Business Central';
+                Promoted = true;
+                PromotedCategory = Process;
+                ToolTip = 'Generate the table from the coupled Microsoft Dataverse worker.';
+
+                trigger OnAction()
+                var
+                    DataverseWorker: Record "Dataverse Worker";
+                    CRMIntegrationManagement: Codeunit "CRM Integration Management";
+                begin
+                    CurrPage.SetSelectionFilter(DataverseWorker);
+                    CRMIntegrationManagement.CreateNewRecordsFromCRM(DataverseWorker);
+                end;
+            }
+        }
+    }
+
+    var
+        CurrentlyCoupledDataverseWorker: Record "Dataverse Worker";
+
+    trigger OnInit()
+    begin
+        Codeunit.Run(Codeunit::"CRM Integration Management");
+    end;
+
+    procedure SetCurrentlyCoupledDataverseWorker(DataverseWorker: Record "Dataverse Worker")
+    begin
+        CurrentlyCoupledDataverseWorker := DataverseWorker;
+    end;
+}
