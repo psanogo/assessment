@@ -1,0 +1,8 @@
+[EventSubscriber(ObjectType::Codeunit, Codeunit::"CRM Setup Defaults", 'OnGetCDSTableNo', '', false, false)]
+local procedure HandleOnGetCDSTableNo(BCTableNo: Integer; var CDSTableNo: Integer; var handled: Boolean)
+begin
+    if BCTableNo = Database::Employee then begin
+        CDSTableNo := Database::"Dataverse Worker";
+        handled := true;
+    end;
+end;
